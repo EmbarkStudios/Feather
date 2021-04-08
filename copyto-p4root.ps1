@@ -1,4 +1,4 @@
-# Copies the workspace to the Plugins\Marketplace folder under $p4root.
+# Copies the workspace to the plugin folder under $p4root.
 # $p4root is the Perforce root folder that contains the uproject file
 param (
 	[Parameter(Mandatory = $true)] 
