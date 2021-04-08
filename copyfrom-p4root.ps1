@@ -5,13 +5,10 @@ param (
 	[string]$p4root
 )
 
-$pluginName = "Feather"
-$pluginRoot = join-path $p4root "Script\$pluginName"
-
-$files = git ls-tree -r --name-only embark
+$files = git ls-tree -r --name-only embark | Select-String "^Script/Feather/|^Content/DebugInterface/"
 $files | foreach {
 	$dest = $_
-	$src = (join-path $pluginRoot $dest)
+	$src = (join-path $p4root $dest)
 	if ((test-path $dest -PathType Leaf) -and (test-path $src)) {
 		copy-item $src $dest
 	}

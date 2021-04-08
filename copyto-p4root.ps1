@@ -5,14 +5,11 @@ param (
 	[string]$p4root
 )
 
-$pluginName = "Feather"
-$pluginRoot = join-path $p4root "Script\$pluginName"
-
-$files = (git ls-tree -r --name-only embark) | Select-String "\.ps1$" -NotMatch | Select-String "^Build-Scripts" -NotMatch
+$files = git ls-tree -r --name-only embark | Select-String "^Script/Feather/|^Content/DebugInterface/"
 $files | foreach {
 	$src = $_
 	if (test-path $src -PathType Leaf) {
-		$dest = (join-path $pluginRoot $src)
+		$dest = (join-path $p4root $src)
 		(New-Item -Path (Split-Path -Path $dest) -Type Directory -ErrorAction SilentlyContinue)
 		copy-item $src $dest
 	}
