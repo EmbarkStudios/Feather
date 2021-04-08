@@ -19,7 +19,7 @@ $sha = (git rev-parse HEAD)
 $origin = (git remote get-url --push origin)
 $branch = (git branch --show-current)
 
-$infoPath = (join-path $pluginRoot "PLUGIN_ORIGIN.json")
+$infoPath = (join-path $p4root "Script/Feather/PLUGIN_ORIGIN.json")
 if (Test-Path $infoPath) {
 	remove-item $infoPath
 }
